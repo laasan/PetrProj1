@@ -1,5 +1,5 @@
 const modals = () => {
-    function bindModal(triggerSelector, modalSelector, closeSelector) {
+    function bindModal(triggerSelector, modalSelector, closeSelector, closeClickOverlay = true) {
         const trigger = document.querySelectorAll(triggerSelector),
             modal = document.querySelector(modalSelector),
             close = document.querySelector(closeSelector);
@@ -33,7 +33,7 @@ const modals = () => {
         });
 
         modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
+            if (e.target === modal && closeClickOverlay) {
                 windows.forEach(item => {
                     item.style.display = '';
                 });
@@ -52,7 +52,7 @@ const modals = () => {
         }, time);
     }
 
-    bindModal('.popup_engineer_btn', '.popup_engineer', '.popup_engineer .popup_close');
+    bindModal('.popup_engineer_btn', '.popup_engineer', '.popup_engineer .popup_close', false);
     bindModal('.phone_link', '.popup', '.popup .popup_close');
     bindModal('.popup_calc_btn', '.popup_calc', '.popup_calc_close');
     // showModalByTime('.popup', 60000);

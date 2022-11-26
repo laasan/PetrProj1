@@ -17969,6 +17969,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var modals = function modals() {
   function bindModal(triggerSelector, modalSelector, closeSelector) {
+    var closeClickOverlay = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
     var trigger = document.querySelectorAll(triggerSelector),
         modal = document.querySelector(modalSelector),
         close = document.querySelector(closeSelector);
@@ -17994,7 +17995,7 @@ var modals = function modals() {
       document.body.style.overflow = ''; // document.body.classList.remove('modal-open');
     });
     modal.addEventListener('click', function (e) {
-      if (e.target === modal) {
+      if (e.target === modal && closeClickOverlay) {
         windows.forEach(function (item) {
           item.style.display = '';
         });
@@ -18011,7 +18012,7 @@ var modals = function modals() {
     }, time);
   }
 
-  bindModal('.popup_engineer_btn', '.popup_engineer', '.popup_engineer .popup_close');
+  bindModal('.popup_engineer_btn', '.popup_engineer', '.popup_engineer .popup_close', false);
   bindModal('.phone_link', '.popup', '.popup .popup_close');
   bindModal('.popup_calc_btn', '.popup_calc', '.popup_calc_close'); // showModalByTime('.popup', 60000);
 };
