@@ -13,20 +13,19 @@ const changeModalState = (state) => {
     function bindActionToElems (event, elem, prop) {
         elem.forEach((item, i) => {
             item.addEventListener(event, () => {
-                state[prop] = i;
+                if (elem.length > 1) {
+                    state[prop] = i;
+                } else {
+                    state[prop] = item.value;
+                }
                 console.log(state);
             });
         });
     }
 
-    // windowForm.forEach((item, i) => {
-    //     item.addEventListener('click', () => {
-    //         state.form = i;
-    //         console.log(state);
-    //     });
-    // });
-
     bindActionToElems('click', windowForm, 'form');
+    bindActionToElems('input', windowHeight, 'height');
+    bindActionToElems('input', windowWidth, 'width');
 };
 
 export default changeModalState;

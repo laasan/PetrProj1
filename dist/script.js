@@ -17881,19 +17881,20 @@ var changeModalState = function changeModalState(state) {
   function bindActionToElems(event, elem, prop) {
     elem.forEach(function (item, i) {
       item.addEventListener(event, function () {
-        state[prop] = i;
+        if (elem.length > 1) {
+          state[prop] = i;
+        } else {
+          state[prop] = item.value;
+        }
+
         console.log(state);
       });
     });
-  } // windowForm.forEach((item, i) => {
-  //     item.addEventListener('click', () => {
-  //         state.form = i;
-  //         console.log(state);
-  //     });
-  // });
-
+  }
 
   bindActionToElems('click', windowForm, 'form');
+  bindActionToElems('input', windowHeight, 'height');
+  bindActionToElems('input', windowWidth, 'width');
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (changeModalState);
