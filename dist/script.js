@@ -17972,22 +17972,32 @@ var modals = function modals() {
     var trigger = document.querySelectorAll(triggerSelector),
         modal = document.querySelector(modalSelector),
         close = document.querySelector(closeSelector);
+    var windows = document.querySelectorAll('[data-modal]');
     trigger.forEach(function (item) {
       item.addEventListener('click', function (e) {
         if (e.target) {
           e.preventDefault();
         }
 
+        windows.forEach(function (item) {
+          item.style.display = '';
+        });
         modal.style.display = 'block';
         document.body.style.overflow = 'hidden'; // document.body.classList.add('modal-open');
       });
     });
     close.addEventListener('click', function () {
+      windows.forEach(function (item) {
+        item.style.display = '';
+      });
       modal.style.display = 'none';
       document.body.style.overflow = ''; // document.body.classList.remove('modal-open');
     });
     modal.addEventListener('click', function (e) {
       if (e.target === modal) {
+        windows.forEach(function (item) {
+          item.style.display = '';
+        });
         modal.style.display = 'none';
         document.body.style.overflow = ''; // document.body.classList.remove('modal-open');
       }

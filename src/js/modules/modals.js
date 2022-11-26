@@ -4,12 +4,18 @@ const modals = () => {
             modal = document.querySelector(modalSelector),
             close = document.querySelector(closeSelector);
 
+        const windows = document.querySelectorAll('[data-modal]');
+
         trigger.forEach(item => {
             item.addEventListener('click', (e) => {
                 if (e.target) {
                     e.preventDefault();
                 }
     
+                windows.forEach(item => {
+                    item.style.display = '';
+                });
+
                 modal.style.display = 'block';
                 document.body.style.overflow = 'hidden';
                 // document.body.classList.add('modal-open');
@@ -17,6 +23,10 @@ const modals = () => {
         });
         
         close.addEventListener('click', () => {
+            windows.forEach(item => {
+                item.style.display = '';
+            });
+
             modal.style.display = 'none';
             document.body.style.overflow = '';
             // document.body.classList.remove('modal-open');
@@ -24,6 +34,10 @@ const modals = () => {
 
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
+                windows.forEach(item => {
+                    item.style.display = '';
+                });
+
                 modal.style.display = 'none';
                 document.body.style.overflow = '';
                 // document.body.classList.remove('modal-open');
