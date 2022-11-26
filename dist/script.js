@@ -17865,6 +17865,8 @@ window.addEventListener('DOMContentLoaded', function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
 /* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _checkNumInputs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./checkNumInputs */ "./src/js/modules/checkNumInputs.js");
+
 
 
 var changeModalState = function changeModalState(state) {
@@ -17873,12 +17875,25 @@ var changeModalState = function changeModalState(state) {
       windowHeight = document.querySelectorAll('#height'),
       windowType = document.querySelectorAll('#view_type'),
       windowProfile = document.querySelectorAll('.checkbox');
-  windowForm.forEach(function (item, i) {
-    item.addEventListener('click', function () {
-      state.form = i;
-      console.log(state);
+  Object(_checkNumInputs__WEBPACK_IMPORTED_MODULE_1__["default"])('#width');
+  Object(_checkNumInputs__WEBPACK_IMPORTED_MODULE_1__["default"])('#height');
+
+  function bindActionToElems(event, elem, prop) {
+    elem.forEach(function (item, i) {
+      item.addEventListener(event, function () {
+        state[prop] = i;
+        console.log(state);
+      });
     });
-  });
+  } // windowForm.forEach((item, i) => {
+  //     item.addEventListener('click', () => {
+  //         state.form = i;
+  //         console.log(state);
+  //     });
+  // });
+
+
+  bindActionToElems('click', windowForm, 'form');
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (changeModalState);
